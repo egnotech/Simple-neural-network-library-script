@@ -35,7 +35,10 @@ def inp():
                     print(f"Network tested succesfully.\nPrediction: {prediction}\nConfidence: {confidence * 100:.2f}%.")
                     if input("Would you like to test again (y/n)? ") == "n":
                         if input("Would you like to save this network (y/n)? ") == "y":
-                            network.save()
+                            save_as = input("Save as (leave blank for default network.pkl, must end in .pkl): ")
+                            if not save_as:
+                                save_as = "network.pkl"
+                            network.save(save_as)
                         break
                 except ValueError as err:
                     if ".cancel" in str(err):
