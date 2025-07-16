@@ -30,7 +30,7 @@ Next, if you want to train your neural network, you need to code an input system
    ```python
    from NeuralNetworks import inp
    ```
-   Then, simply calling the `inp()` function will start your input system, automatically call all required functions, and automatic train your neural network in epochs.
+   Then, simply calling the `inp()` function will start your input system, automatically call all required functions, and automatically train your neural network in epochs.
 2. Or, you can import the whole module at once, by replacing
    ```python
    from NeuralNetworks import NeuralNet
