@@ -74,7 +74,7 @@ class NeuralNet:
         self.activations = [np.zeros((length, self.batch_size)) for length in self.layer_sizes]
         self.z_values = [np.zeros((length, self.batch_size)) for length in self.layer_sizes]
     
-    def training_data(self):
+    def training_data(self, epochs=500, learning_rate=0.05):
         if self.verbose:
             print("NeuralNet: Input training data. Please input \".cancel\" at any point to stop the process.")
         while True:
@@ -85,7 +85,7 @@ class NeuralNet:
                 ]
                 if self.verbose:
                     print("NeuralNet: Training neural network. This might take a while.")
-                self.train_epochs(results)
+                self.train_epochs(results, epochs, learning_rate)
                 return
             except ValueError as err:
                 if ".cancel" in str(err):
