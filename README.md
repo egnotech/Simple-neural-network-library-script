@@ -1,5 +1,5 @@
 # NeuralNets library
-This is a simple yet versatile neural network Python script, which can also be imported as a library. It has a verbose mode and non-verbose mode.
+This is a simple yet versatile neural network CLI app in Python, which can also be imported as a library. It has a verbose mode and a non-verbose mode.
 
 Here is an example of how to use the library.
 
@@ -55,7 +55,7 @@ Start training or load previous? (train/load):
 ```
 However, if you don't want to use the built-in function for inputs, here is some helpful information for coding your own:
 
-There is a built in `NeuralNetworks.NeuralNet.training_data()` function which will be mostly silenced with verbose mode. This can be a shortcut for your input system. It will automatically ask for training data input, and then train the neural network correspondingly.
+There is a built in `NeuralNetworks.NeuralNet.training_data()` function which will be mostly silenced with verbose mode. This can be a shortcut for your input system. It will automatically ask for training data input, and then train the neural network correspondingly. It also has optional arguments `epochs` and `learning_rate` (see below `train_epochs`).
 
 If you want to do this manually, though, please note that the output of your input function must have the shape: `[np.array(batch_size, n_inputs), np.array(batch_size, n_outputs)]`. Then, you must pass this output as the first argument of the `NeuralNetworks.NeuralNet.train_epochs()` function. It has the following syntax:
 ```python
