@@ -9,9 +9,6 @@ N_OUTPUTS = 2
 HIDDEN_LAYERS = [3, 5, 5, 4]
 BATCH_SIZE = 10
 
-program_dir = os.path.dirname(os.path.abspath(sys.argv[0]))
-os.makedirs(os.path.join(program_dir, "Saved networks"), exist_ok=True)
-
 def inp():
     tL = input("Start training or load previous? (train/load): ")
     network = None
@@ -47,10 +44,10 @@ def inp():
                     print("Input is not valid. Please try again.")
 
 class NeuralNet:
-    def __str__(self):
-        return "network"
-
     def __init__(self, n_inputs, n_outputs, hidden_layers, batch_size, verbose=True):
+        self.program_dir = os.path.dirname(os.path.abspath(sys.argv[0]))
+        os.makedirs(os.path.join(self.program_dir, "Saved networks"), exist_ok=True)
+
         self.verbose = verbose
         self.n_inputs = n_inputs
         self.n_outputs = n_outputs
@@ -170,14 +167,13 @@ class NeuralNet:
         new = base
 
         i = 0
-        while os.path.exists(os.path.join(program_dir, "Saved networks", f"{new}.pkl")):
+        while os.path.exists(os.path.join(self.program_dir, "Saved networks", f"{new}.pkl")):
             i += 1
             new = f"{base}_{i}"
-        filename = os.path.join(program_dir, "Saved networks", f"{new}.pkl")
+        filename = os.path.join(self.program_dir, "Saved networks", f"{new}.pkl")
 
         with open(filename, "wb") as file:
             pickle.dump({
-                "Name": self,
                 "Inputs": self.n_inputs,
                 "Outputs": self.n_outputs,
                 "Hidden layers": self.hidden_layers,
@@ -189,9 +185,8 @@ class NeuralNet:
             print(f"NeuralNet: Saved to '{filename}'.")
     
     def load(self, filename="network.pkl"):
-        with open(os.path.join(program_dir, "Saved networks", filename), "rb") as file:
+        with open(os.path.join(self.program_dir, "Saved networks", filename), "rb") as file:
             data = pickle.load(file)
-        name = data["Name"]
         self.n_inputs = data["Inputs"]
         self.n_outputs = data["Outputs"]
         self.hidden_layers = data["Hidden layers"]
@@ -201,7 +196,7 @@ class NeuralNet:
         self.biases = data["Biases"]
         self.init_activations()
         if self.verbose:
-            print(f"NeuralNet: '{name}' loaded from '{filename}'.")
+            print(f"NeuralNet: Loaded from '{filename}'.")
 
 if __name__ == "__main__":
     inp()
