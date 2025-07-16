@@ -1,4 +1,4 @@
-# Simple-neural-network-library-script
+# NeuralNets library
 This is a simple yet versatile neural network Python script, which can also be imported as a library. It has a verbose mode and non-verbose mode.
 
 Here is an example of how to use the library.
@@ -49,7 +49,7 @@ Next, if you want to train your neural network, you need to code an input system
    ```
    Once again, calling `NeuralNetworks.inp()` will start you input system and everything else automatically.
 
-These will both give the same output:
+These will both give the same output (assuming verbose mode is on):
 ```
 Start training or load previous? (train/load): 
 ```
@@ -71,10 +71,11 @@ NeuralNetworks.NeuralNet.predict(inputs)
 ```python
 NeuralNetworks.NeuralNet.loss(true, pred)
 ```
-loss between the correct (true) values `true` and the 
+loss between the correct (true) values `true` and the neural network's predicted values `pred` (both with shape `np.array(batch_size, n_outputs)`).
 ```python
-NeuralNetworks.NeuralNet.
+NeuralNetworks.NeuralNet.acc(true, pred)
 ```
+same as the `loss()` function above but it calculates the accuracy.
 ```python
 NeuralNetworks.NeuralNet.
 ```
