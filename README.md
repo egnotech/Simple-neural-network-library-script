@@ -71,17 +71,19 @@ NeuralNetworks.NeuralNet.predict(inputs)
 ```python
 NeuralNetworks.NeuralNet.loss(true, pred)
 ```
-loss between the correct (true) values `true` and the neural network's predicted values `pred` (both with shape `np.array(batch_size, n_outputs)`).
+Loss between the correct (true) values `true` and the neural network's predicted values `pred` (both with shape `np.array(batch_size, n_outputs)`).
 ```python
 NeuralNetworks.NeuralNet.acc(true, pred)
 ```
-same as the `loss()` function above but it calculates the accuracy.
+Same as the `loss()` function above but it calculates the accuracy.
 ```python
-NeuralNetworks.NeuralNet.
+NeuralNetworks.NeuralNet.save(filename="network.pkl")
 ```
+Will create a folder (if it doesn't exist) in the same directory as the script currently running, named `Saved networks`. Then, it will save your neural network as a file within, named `network.pkl` by default, or something else, depending on the `filename` argument (must have `.pkl` extension, otherwise won't work properly). If the filename already exists, it will add `_1` to the end of the filename, followed by `_2` and `_3`, which keeps incrementing.
 ```python
-NeuralNetworks.NeuralNet.
+NeuralNetworks.NeuralNet.load(filename="network.pkl")
 ```
+This will load the `network.pkl` file by default, or something else depending on the `filename` argument (must have `.pkl` extension at the end). The file will be loaded as your neural network. You should create the NeuralNet object and make sure it's initialized before using this function.
 ```python
 NeuralNetworks.NeuralNet.
 ```
