@@ -57,7 +57,7 @@ However, if you don't want to use the built-in function for inputs, here is some
 
 There is a built in `NeuralNetworks.NeuralNet.training_data()` function which will be mostly silenced with verbose mode. This can be a shortcut for your input system. It will automatically ask for training data input, and then train the neural network correspondingly. It also has optional arguments `epochs` and `learning_rate` (see below `train_epochs`).
 
-If you want to do this manually, though, please note that the output of your input function must have the shape: `[np.array(batch_size, n_inputs), np.array(batch_size, n_outputs)]`. Then, you must pass this output as the first argument of the `NeuralNetworks.NeuralNet.train_epochs()` function. It has the following syntax:
+If you want to do this manually, though, please note that your input function must output a list with the shape: `[np.array(batch_size, n_inputs), np.array(batch_size, n_outputs)]`. Then, you must pass this output as the first argument of the `NeuralNetworks.NeuralNet.train_epochs()` function. It has the following syntax:
 ```python
 NeuralNetworks.NeuralNet.train_epochs(results, epochs=500, learning_rate=0.05)
 ```
@@ -67,7 +67,7 @@ Here are some other useful functions built-in:
 ```python
 NeuralNetworks.NeuralNet.predict(inputs)
 ```
-`inputs` is an array (supports batch processing) with the inputs to the neural network. Shape: `np.array(batch_size, n_inputs)` or `np.array(n_inputs)`
+`inputs` is an array (supports batch processing) with the inputs to the neural network. Shape: `np.array(batch_size, n_inputs)` or `np.array(n_inputs)`. Returns: `(prediction, confidence)`
 ```python
 NeuralNetworks.NeuralNet.loss(true, pred)
 ```
