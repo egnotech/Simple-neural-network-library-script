@@ -67,15 +67,15 @@ Here are some other useful functions built-in:
 ```python
 NeuralNetworks.NeuralNet.predict(inputs)
 ```
-`inputs` is an array (supports batch processing) with the inputs to the neural network. Shape: `np.array(batch_size, n_inputs)` or `np.array(n_inputs)`. Returns: `(prediction, confidence)`
+`inputs` is an array (supports batch processing) with the inputs to the neural network. Shape: `np.array(batch_size, n_inputs)` or `np.array(n_inputs)`. Returns: `(prediction, confidence)`.
 ```python
 NeuralNetworks.NeuralNet.loss(true, pred)
 ```
-Loss between the correct (true) values `true` and the neural network's predicted values `pred` (both with shape `np.array(batch_size, n_outputs)`).
+Loss between the correct (true) values `true` and the neural network's predicted values `pred` (both with shape `np.array(batch_size, n_outputs)`). Returns the calculated loss.
 ```python
 NeuralNetworks.NeuralNet.acc(true, pred)
 ```
-Same as the `loss()` function above but it calculates the accuracy.
+Same as the `loss()` function above but it calculates and returns the accuracy.
 ```python
 NeuralNetworks.NeuralNet.save(filename="network.pkl")
 ```
@@ -85,5 +85,6 @@ NeuralNetworks.NeuralNet.load(filename="network.pkl")
 ```
 This will load the `network.pkl` file by default, or something else depending on the `filename` argument (must have `.pkl` extension at the end). The file will be loaded as your neural network. You should create the NeuralNet object and make sure it's initialized before using this function.
 ```python
-NeuralNetworks.NeuralNet.
+NeuralNetworks.NeuralNet.train(results, learning_rate=0.05)
 ```
+Will train the neural network (but only a single epoch) with the `results` array (see line 60), and has the optional argument `learning_rate` which defaults to 0.05. This function is silent by default.
