@@ -1,3 +1,6 @@
+# NeuralNetworks Python library
+# by egnotech
+
 import numpy as np
 import os, sys, pickle
 
