@@ -2,6 +2,7 @@
 # by egnotech
 
 import numpy as np
+import random
 import os, sys, pickle
 
 N_INPUTS = 1
@@ -119,13 +120,14 @@ class NeuralNet:
         return np.mean(predictions == targets)
     
     def train(self, results, learning_rate=0.05):
-        self.activations[0] = results[0]
+        inputs, targets = results
+        self.activations[0] = inputs
         self.propagate()
 
         d_weights = [np.zeros_like(w) for w in self.weights]
         d_biases = [np.zeros_like(b) for b in self.biases]
 
-        delta = self.activations[-1] - results[1]
+        delta = self.activations[-1] - targets
 
         for i in reversed(range(len(self.weights))):
             a_prev = self.activations[i]
@@ -142,10 +144,17 @@ class NeuralNet:
             self.biases[i] -= learning_rate * d_biases[i]
     
     def train_epochs(self, results, epochs=500, learning_rate=0.05):
+        inputs, targets = results
+        samples = inputs.shape[1]
+
         for epoch in range(epochs):
-            self.train(results, learning_rate)
-            loss = self.loss(results[1], self.activations[-1])
-            acc = self.acc(results[1], self.activations[-1])
+            indices = np.random.permutation(samples)
+            shuff_inputs = inputs[:, indices]
+            shuff_targets = targets[:, indices]
+
+            self.train((shuff_inputs, shuff_targets), learning_rate)
+            loss = self.loss(shuff_targets, self.activations[-1])
+            acc = self.acc(shuff_targets, self.activations[-1])
             if self.verbose:
                 print(f"Epoch {epoch} - Loss: {loss:.5f}; Accuracy: {acc * 100:.2f}%")
 
