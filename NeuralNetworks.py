@@ -2,7 +2,6 @@
 # by egnotech
 
 import numpy as np
-import random
 import os, sys, pickle
 
 N_INPUTS = 1
@@ -169,10 +168,7 @@ class NeuralNet:
         prediction = np.argmax(output, axis=0)
         confidence = output[prediction, np.arange(output.shape[1])]
 
-        if output.shape[1] == 1:
-            return int(prediction[0]), float(confidence[0])
-
-        return prediction, confidence
+        return int(prediction[0]), float(confidence[0])
     
     def save(self, filename="network.pkl"):
         base = filename[:-4]
